@@ -3,6 +3,8 @@
 **Issue link:** https://github.com/ascherj/pathreview/issues/14
 
 **Issue title:** Add support for parsing GitHub Actions workflow files to detect CI/CD skills
+- I choose this issue because it connects directly to what I do at my current job. I interact with GitHub Actions workflow files regularly so I'm already familiar with the YAML structure and the uses: / run: patterns, but I've always engaged with them as a writer, configuring jobs and steps to get pipelines working. This issue gave me a reason to look at the same files from the other direction: what does a parser actually see when it reads them programmatically, and how do you map that structure to meaningful skill signals? That framing made the scope feel purposeful rather than arbitrary
+- The gap it closes also felt real to me: a developer whose most skilled work lives in their CI/CD pipelines is currently invisible to PathReview's indexer. That's not an edge case.
 
 **Tier:** Tier 3
 
