@@ -18,3 +18,23 @@
 **Setup confirmation:** App runs locally at localhost:5173
 
 **Cohort ledger:** Issue added to cohort ledger
+
+
+---------------------------------------------------------------------
+
+## Week 8 — Reproduction & solution planning
+
+**Reproduction commit link:** https://github.com/MiaNguyen912/pathreview/commit/2ebfa036f0913fd696fe29df2b96a338532f68bf
+
+**Reproduction summary:** see section "ANALYSIS: Replicate Issue #14 (Detailed Steps)" in [PLAN.md](PLAN.md)
+
+**PLAN.md link:** [PLAN.md](PLAN.md)
+
+**Walkthrough video (recommended):** N/A
+
+**Blockers or open questions:**
+- GitHub API credentials needed to fetch actual workflow files (currently using placeholder)
+- Need to decide: should IngestionPipeline be instantiated in _run_ingestion_pipeline() or elsewhere?
+
+
+
