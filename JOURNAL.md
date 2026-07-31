@@ -36,5 +36,44 @@
 - GitHub API credentials needed to fetch actual workflow files (currently using placeholder)
 - Need to decide: should IngestionPipeline be instantiated in _run_ingestion_pipeline() or elsewhere?
 
+---------------------------------------------------------------------
+
+## Week 9 — Solution building & PR submission
+
+### Check-in 1 (mid-week)
+
+**Current progress:**
+- Phase 1 in [PLAN.md](PLAN.md) is completed: 
+    - Created WorkflowParser class with trigger extraction, deploy detection, and skill extraction via `SkillExtractor`.
+    - Updated `ingestion/parsers/skill_extractor.py`: added more tools to the TOOLS dict and the override names for some of them (e.g kubectl→Kubernetes, aws→AWS, gcp→GCP)
+    - Enhanced unit test suite with 29 test cases covering valid/malformed YAML, skill detection, multiple jobs, realistic CI/CD workflows, and edge cases. All tests passing (29/29).
+
+**Next steps:**
+- Phase 2: Add `ingest_workflow()` method to IngestionPipeline (following ingest_resume/ingest_readme pattern). 
+- Phase 3: Update StrategySelector to handle "workflow" source_type. 
+- Phase 4: Wire API layer to call IngestionPipeline.ingest_workflow(). 
+- Phase 5: Integration testing.
+
+**Blockers:**
+None
+
+---------------------------------------------------------------------
+
+### Check-in 2 (end of week)
+
+**PR link:** [link to your submitted pull request]
+
+**Branch:** [the branch name you worked on, e.g. `fix/123-short-description`]
+
+**What you built:**
+[1–3 sentences summarizing what your fix does and how it works]
+
+**Tests added or updated:**
+[Which test files did you touch? What do they cover?]
+
+**Self-review confirmation:** [ ] make check passes  [ ] make test-unit passes
+
+**Draft PR feedback received from:** [name or Slack handle, or "none"]
+
 
 
