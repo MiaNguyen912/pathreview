@@ -663,9 +663,6 @@ Files I expect to touch:
    - Test skill extraction from workflow YAML
    - Test error handling on malformed YAML
 
-7. **`script/replicate_issue_14.py`** (EXISTING) — Already demonstrates the issue
-   - Shows SkillExtractor CAN detect CI/CD tools
-   - Validates the gap in production code
 
 ### Plan
 
@@ -705,7 +702,7 @@ Files I expect to touch:
          return self.semantic_chunker
      ```
 
-**Phase 4: Wire the API layer** (NOTE: might be out of scope)
+**Phase 4: Wire the API layer** (NOTE: Out of scope)
 
 5. In `core/services/review_service.py`, update `_run_ingestion_pipeline()`:
    - Import `IngestionPipeline` (already imported on line 10, but will need embedding provider + vector DB)
@@ -721,10 +718,16 @@ Files I expect to touch:
 
 **Phase 5: Validation**
 
-7. Run unit tests: `make test-unit` — confirm all new tests pass
-8. Run replication script: `python3 script/replicate_issue_14.py` — confirm no errors
-9. Run type checks: `make typecheck` — verify no type errors
-10. Manual test: create profile with GitHub username that has repos with workflows, request review, verify review contains CI/CD tools in feedback
+7. Run unit tests: `make test-unit` — confirm all new tests pass and no new failure appears
+8. Run replication script in "ANALYSIS: Replicate Issue #14 (Detailed Steps)" in [PLAN.md](PLAN.md) to confirm no errors
+9. Run type checks: `make check` and verify no type errors are related to the new code I added
+    - This is equivalent to running:
+    ```bash
+    make lint       # ruff check .
+    make format     # black .
+    make typecheck  # mypy api/ core/ ingestion
+    ```
+
 
 ### Inputs & outputs
 
