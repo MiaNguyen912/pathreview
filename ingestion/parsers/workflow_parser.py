@@ -140,7 +140,14 @@ class WorkflowParser(BaseParser):
         )
 
     def _extract_triggers(self, workflow: dict) -> list[str]:
-        """Extract trigger events from workflow."""
+        """Extract trigger events from workflow.
+
+        Args:
+            workflow: Parsed workflow dictionary
+
+        Returns:
+            List of trigger event names (e.g., ['push', 'pull_request'])
+        """
         on = workflow.get("on") or workflow.get(True)  # YAML parses `on:` as True
         if not on:
             return []
@@ -153,7 +160,15 @@ class WorkflowParser(BaseParser):
         return []
 
     def _is_deploy_workflow(self, trigger_events: list[str], workflow: dict) -> bool:
-        """Detect if workflow is a deployment workflow."""
+        """Detect if workflow is a deployment workflow.
+
+        Args:
+            trigger_events: List of trigger event names from the workflow
+            workflow: Parsed workflow dictionary
+
+        Returns:
+            True if workflow is a deployment workflow, False otherwise
+        """
         # Check if triggered by deployment events
         for event in trigger_events:
             if event in _DEPLOY_TRIGGERS:
