@@ -97,3 +97,35 @@ Completed Phases 1–3 of Issue #14: built a `WorkflowParser` that reads GitHub 
 
 **Draft PR feedback received from:** N/A
 
+---------------------------------------------------------------------
+
+## Week 10 — Iteration & reflection
+
+### Reviewer feedback
+
+**Feedback received:** [ ] Yes  [x] No — still awaiting review
+
+**Summary of feedback:**
+Nno review came in yet.
+
+**How you responded:**
+N/A
+
+---
+
+### Reflection
+
+**What was harder than you expected?**
+Understanding the ingestion pipeline architecture took longer than anticipated. While the docs explained the high-level system, tracing the data flow from parser → chunker → embeddings → ChromaDB required reading multiple interconnected files. The real challenge wasn't grasping individual pieces but seeing how they fit together: how `ParseResult` dataclass contracts flow through the system, why `StrategySelector` routes different source types to different chunkers, and where exactly skill metadata gets stored and retrieved. Additionally, debugging against pre-existing linting errors required distinguishing which failures were introduced by my changes versus which were already in the codebase.
+
+**What did you learn about working in a large codebase?**
+Pattern replication is more efficient than innovation. By following the established `ingest_resume()` and `ingest_readme()` patterns exactly, my `ingest_workflow()` method integrated seamlessly without architectural debate. I learned that consistency matters: matching logging patterns, exception handling style, metadata key names, and type annotations makes code reviewable and maintainable. I also discovered that good tests aren't optional—the 29 unit tests I wrote for `WorkflowParser` became my documentation, clarifying expected behavior better than any docstring could.
+
+**How did AI tools help — and where did they fall short?**
+AI excelled at code generation once I described patterns ("follow the same structure as ingest_readme") and at explaining trade-offs ("why route workflow to semantic chunking"). It helped me understand exception chaining (`raise ... from e`) and mypy type annotation edge cases. AI fell short when I needed project-specific judgment: it couldn't independently discover that pre-existing linting errors were unrelated to my changes or decide whether `--no-verify` was justified. Those decisions required me to reason about the codebase state independently.
+
+**What would you do differently if you started over?**
+I would spend the first day reading similar implementations end-to-end before coding. Instead of jumping to `WorkflowParser`, I would have carefully studied `ResumeParser` and `ReadmeParser`, understanding their contracts and common patterns. This would have reduced back-and-forth and shortened the integration phase. I'd also run the test suite earlier to establish a baseline, so I could confidently distinguish new failures from pre-existing ones.
+
+**What are you most proud of from this module?**
+From this module, I understand more about the process of contributing to a large codebase. This is a good foundation that helps me see what a software engineer would need to know besides just plan coding. I'm also proud of knowing to differentiate between pre-existing errors which is out of my responsibility to fix, and new errors that I introduced. This judgment required understanding both the code and the project's state.
